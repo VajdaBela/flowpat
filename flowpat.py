@@ -7,6 +7,7 @@ A pattern consists of multiple frames. A frame consists of multiple instructions
 diode has to achieve which brightness value. Max brightness is 255, min is 0. A frame says under what time
 the instruction has to be fulfilled. And a pattern is just a collection of frames..
 """
+#TODO remove folder names from out file
 
 class Instruction:
     all_instructions = []
@@ -61,7 +62,9 @@ class Frame:
 
         first_instruction_idx = len(Instruction.all_instructions)
 
-        instruction_num = Instruction.make_instructions_from_line(parts[1])
+        instruction_num = 0
+        for instruction_part in parts[1:]:
+            instruction_num += Instruction.make_instructions_from_line(instruction_part)
 
         Frame(time, first_instruction_idx, instruction_num)
 
